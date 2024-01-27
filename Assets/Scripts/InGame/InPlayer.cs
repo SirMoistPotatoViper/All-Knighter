@@ -26,6 +26,10 @@ public class InPlayer : MonoBehaviour
     private InputAction quit;
     private InputAction jump;
     private InputAction shoot;
+
+    [SerializeField]
+    public Transform firePoint;
+    public GameObject bulletPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -113,14 +117,23 @@ public class InPlayer : MonoBehaviour
     private void Flip()
     {
         isFacingRight = !isFacingRight;
-        Vector3 localScale = transform.localScale;
+        /*Vector3 localScale = transform.localScale;
         localScale.x *= -1f;
-        transform.localScale = localScale;
+        transform.localScale = localScale;*/
+
+        transform.Rotate(0f, 180f, 0f);
     }
 
     private void Handle_ShootPerformed(InputAction.CallbackContext context)
     {
         Debug.Log("shoot");
+        Shoot();
+    }
+
+    void Shoot ()
+    {
+        // shooting logic
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     private void Handle_QuitPerformed(InputAction.CallbackContext context)
@@ -140,7 +153,7 @@ public class InPlayer : MonoBehaviour
 
     private void Handle_MovePerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("Ugh");
+        //Debug.Log("Ugh");
 
         
        
