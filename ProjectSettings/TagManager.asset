@@ -5,12 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacles
-  - Waypoint
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - Obstacles
