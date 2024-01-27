@@ -50,7 +50,8 @@ public class InPlayer : MonoBehaviour
 
 
 
-        jump.started += Handle_Jump_Started;
+        jump.started += Handle_JumpPerformed;
+        jump.canceled += Handle_Jump_Canceled;
 
         move.started += Handle_MovePerformed;
         move.canceled += Handle_Move_Canceled;
@@ -62,6 +63,15 @@ public class InPlayer : MonoBehaviour
 
     }
 
+    private void Handle_Jump_Canceled(InputAction.CallbackContext context)
+    {
+        if (rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+        
+    }
+
     private void Handle_Move_Canceled(InputAction.CallbackContext context)
     {
         Debug.Log("Pls");
@@ -69,16 +79,14 @@ public class InPlayer : MonoBehaviour
         rb.velocity = new Vector2(0, rb.velocity.y);
     }
 
-    private void Handle_Jump_Started(InputAction.CallbackContext context)
+    private void Handle_JumpPerformed(InputAction.CallbackContext context)
     {
         Debug.Log("Read this");
-        rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
-        /*if (context.performed && IsGrounded())
+        if (IsGrounded())
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
         }
-
-        if (context.canceled && rb.velocity.y > 0f)
+        /*if (context.canceled && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }*/
@@ -196,7 +204,7 @@ public class InPlayer : MonoBehaviour
     public void OnDestroy()
     {
         //Remove control when OnDestroy activates
-        jump.started -= Handle_Jump_Started;
+        jump.started -= Handle_JumpPerformed;
         move.started -= Handle_MovePerformed;
         //move.canceled -= Handle_MoveCanceled;
         restart.performed -= Handle_RestartPerformed;
