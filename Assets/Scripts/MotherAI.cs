@@ -4,12 +4,23 @@ using UnityEngine;
 using Pathfinding;
 using System;
 using System.Runtime.InteropServices;
+using Random = UnityEngine.Random;
 
 public class MotherAI : MonoBehaviour
 {
+    List<Transform> waypoints = new List<Transform>();
     public Transform target;
     public Transform pointA;
     public Transform pointB;
+    public Transform pointC;
+    public Transform pointD;
+    public Transform pointE;
+    public Transform pointF;
+    public Transform pointG;
+    public Transform pointH;
+    public Transform pointI;
+
+    public int nextPoint;
 
     public float speed;
     public float nextWaypointDistance;
@@ -24,6 +35,8 @@ public class MotherAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetWaypoints();
+
         speed = 200f;
         nextWaypointDistance = 2f;
 
@@ -33,9 +46,23 @@ public class MotherAI : MonoBehaviour
         InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
 
+    void SetWaypoints()
+    {
+        waypoints.Add(pointA);
+        waypoints.Add(pointB);
+        waypoints.Add(pointC);
+        waypoints.Add(pointD);
+        waypoints.Add(pointE);
+        waypoints.Add(pointF);
+        waypoints.Add(pointG);
+        waypoints.Add(pointH);
+        waypoints.Add(pointI);
+    }
+
     void NewTarget()
     {
-        target = pointA;
+        nextPoint = Random.Range(-0, 9);
+        target = waypoints[nextPoint];
     }
 
     void UpdatePath()

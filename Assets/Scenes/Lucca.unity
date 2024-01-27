@@ -908,7 +908,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 870819404}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.43, y: 3.01, z: 0}
+  m_LocalPosition: {x: -3.46, y: 3.89, z: 0}
   m_LocalScale: {x: 0.4988, y: 0.579007, z: 0.4988}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6402,6 +6402,13 @@ MonoBehaviour:
   target: {fileID: 1828792781}
   pointA: {fileID: 1791360709}
   pointB: {fileID: 1828792781}
+  pointC: {fileID: 1883190383}
+  pointD: {fileID: 297250968}
+  pointE: {fileID: 794056646}
+  pointF: {fileID: 758214263}
+  pointG: {fileID: 1868890163}
+  pointH: {fileID: 1989541635}
+  pointI: {fileID: 870819407}
   speed: 0
   nextWaypointDistance: 0
   currentWaypoint: 0
