@@ -30,6 +30,8 @@ public class InPlayer : MonoBehaviour
     [SerializeField]
     public Transform firePoint;
     public GameObject bulletPrefab;
+    //public HealthBarBehaviour pHealth;
+    //public float damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -96,6 +98,14 @@ public class InPlayer : MonoBehaviour
             }
         }
     }
+
+    /*private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Spike"))
+        {
+            pHealth.health
+        }
+    }*/
     /*private void FixedUpdate()
     {
         if (isPlayerMoving)
