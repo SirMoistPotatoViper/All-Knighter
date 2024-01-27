@@ -70,9 +70,9 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "negative",
-                    "id": "398745c8-54cf-4639-b2a5-73d983fa567a",
-                    "path": "<Keyboard>/s",
+                    "name": "positive",
+                    "id": "2255cb2a-17dc-42c4-966b-c87aec27678c",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -81,9 +81,9 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "positive",
-                    "id": "2255cb2a-17dc-42c4-966b-c87aec27678c",
-                    "path": "<Keyboard>/w",
+                    "name": "negative",
+                    "id": "398745c8-54cf-4639-b2a5-73d983fa567a",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
