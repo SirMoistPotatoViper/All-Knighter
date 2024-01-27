@@ -43,15 +43,41 @@ public class InPlayer : MonoBehaviour
         shoot = MPI.currentActionMap.FindAction("shoot");
 
 
-        
-        jump.started += Handle_JumpPerformed;
-        move.started += Handle_MoveStarted;
+
+        jump.started += Handle_Jump_Started;
+
+        move.started += Handle_MovePerformed;
+        move.canceled += Handle_Move_Canceled;
+
         //.canceled += Handle_MoveCanceled;
         restart.performed += Handle_RestartPerformed;
         quit.performed += Handle_QuitPerformed;
         shoot.performed += Handle_ShootPerformed;
 
     }
+
+    private void Handle_Move_Canceled(InputAction.CallbackContext context)
+    {
+        Debug.Log("Pls");
+        horizontal = 0f;
+        rb.velocity = new Vector2(0, rb.velocity.y);
+    }
+
+    private void Handle_Jump_Started(InputAction.CallbackContext context)
+    {
+        Debug.Log("Read this");
+        rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+        /*if (context.performed && IsGrounded())
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+        }
+
+        if (context.canceled && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }*/
+    }
+
     void Update()
     {
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
@@ -112,16 +138,16 @@ public class InPlayer : MonoBehaviour
         throw new NotImplementedException();
     }*/
 
-    public void Handle_MoveStarted(InputAction.CallbackContext context)
+    private void Handle_MovePerformed(InputAction.CallbackContext context)
     {
         Debug.Log("Ugh");
 
-        if (context.performed)
-        {
+        
+       
             // Input is actively performed (button pressed or held)
             horizontal = context.ReadValue<Vector2>().x;
             Debug.Log("Moving!");
-        }
+        
         //else if (context.canceled)
         //{
             // Input has been released
@@ -131,7 +157,7 @@ public class InPlayer : MonoBehaviour
     }
 
 
-    private void Handle_JumpPerformed(InputAction.CallbackContext context)
+    /*private void Handle_Jump_Started(InputAction.CallbackContext context)
     {
         if (context.performed && IsGrounded())
         {
@@ -142,17 +168,18 @@ public class InPlayer : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-    }
+    }*/
 
     public void OnDestroy()
     {
         //Remove control when OnDestroy activates
-        jump.started -= Handle_JumpPerformed;
-        move.started -= Handle_MoveStarted;
+        jump.started -= Handle_Jump_Started;
+        move.started -= Handle_MovePerformed;
         //move.canceled -= Handle_MoveCanceled;
         restart.performed -= Handle_RestartPerformed;
         quit.performed -= Handle_QuitPerformed;
         shoot.performed -= Handle_ShootPerformed;
+        move.canceled -= Handle_Move_Canceled;
     }
 }
 
