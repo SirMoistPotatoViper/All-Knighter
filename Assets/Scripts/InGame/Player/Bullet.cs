@@ -9,6 +9,7 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject impactEffect;
     public float impactEffectDuration = 0.5f;
+    private float timer;
     //public LineRenderer lineRenderer;
 
     private Transform spawnPoint;
@@ -18,7 +19,17 @@ public class Bullet : MonoBehaviour
         rb.velocity = transform.right * speed;
         spawnPoint = transform;
     }
+    void Update()
+    {
+        timer += Time.deltaTime;
 
+        if (timer > 1)
+        {
+            GameObject impact = Instantiate(impactEffect, transform.position, transform.rotation);
+            Destroy(impact, impactEffectDuration);
+            Destroy(gameObject);
+        }
+    }
     private void OnTriggerEnter2D(Collider2D hitInfo)
     {
         Enemy enemy = hitInfo.GetComponent<Enemy>();
