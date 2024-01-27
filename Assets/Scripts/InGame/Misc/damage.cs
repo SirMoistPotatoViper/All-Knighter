@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class damage : MonoBehaviour
 {
-    public HealthBarBehaviour pHealth;
+    public HealthBarScript pHealth;
     public float pain;
     // Start is called before the first frame update
     void Start()

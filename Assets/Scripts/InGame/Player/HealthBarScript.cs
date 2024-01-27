@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthBarBehaviour : MonoBehaviour
+public class HealthBarScript : MonoBehaviour
 {
     public float health;
     public float maxHealth;
     public Image healthBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -19,11 +20,15 @@ public class HealthBarBehaviour : MonoBehaviour
     {
         healthBar.fillAmount = Mathf.Clamp(health / maxHealth, 0, 1);
 
-        if(health <= 0)
+        if (health <= 0)
         {
             Debug.Log("Player Dead");
             //send player back to checkpoint
             //set health back to full
         }
+    }
+    public void TakeDamage()
+    {
+        health -= 20;
     }
 }
