@@ -100,6 +100,7 @@ public class MotherAI : MonoBehaviour
 
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
+        transform.right = direction;
 
         rb.AddForce(force);
 
