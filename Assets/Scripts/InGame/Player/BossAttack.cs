@@ -19,9 +19,12 @@ public class BossAttack : MonoBehaviour
         pos += transform.right * attackOffset.x;
         pos += transform.up * attackOffset.y;
 
+        //Debug.Log("Hm");
+
         Collider2D colInfo = Physics2D.OverlapCircle(pos, attackRange, attackMask);
         if (colInfo != null) 
         {
+            Debug.Log("Get here");
             colInfo.GetComponent<HealthBarScript>().TakeDamage();
         }
     }
