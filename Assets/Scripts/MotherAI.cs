@@ -23,6 +23,7 @@ public class MotherAI : MonoBehaviour
     public Transform pointG;
     public Transform pointH;
     public Transform pointI;
+    public Transform pointJ;
 
     public GameObject coneOfVision;
     public GameObject MotherHunt;
@@ -97,11 +98,12 @@ public class MotherAI : MonoBehaviour
         waypoints.Add(pointG);
         waypoints.Add(pointH);
         waypoints.Add(pointI);
+        waypoints.Add(pointJ);
     }
 
     void NewTarget()
     {
-        nextPoint = Random.Range(-0, 9);
+        nextPoint = Random.Range(-0, 10);
         target = waypoints[nextPoint];
     }
 
