@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class NewBehaviourScript : MonoBehaviour
 
     public GameObject player;
     public GameObject mother;
+
+    public Slider energyBar;
+    public int energy;
 
     public float moveDirectionV;
     public float moveDirectionH;
@@ -26,6 +30,11 @@ public class NewBehaviourScript : MonoBehaviour
         moveHorizontal = playerControls.currentActionMap.FindAction("MoveHorizontal");
         moveHorizontal.started += moveHorizontal_Started;
         moveHorizontal.canceled += moveHorizontal_Canceled;
+
+        energy = 120;
+        energyBar.value = energy;
+
+        StartCoroutine(EnergyDrain());
     }
 
     private void moveHorizontal_Started(InputAction.CallbackContext context)
@@ -45,6 +54,26 @@ public class NewBehaviourScript : MonoBehaviour
     private void moveVertical_Canceled(InputAction.CallbackContext context)
     {
         moveDirectionV = 0;
+    }
+
+    IEnumerator EnergyDrain()
+    {
+        energy--;
+        energyBar.value = energy;
+        yield return new WaitForSeconds(1);
+        EndGame();
+    }
+
+    void EndGame()
+    {
+        if (energy > 0) 
+        {
+            StartCoroutine(EnergyDrain());
+        }
+        else if (energy <= 0)
+        {
+            //insert end game here
+        }
     }
 
     private void FixedUpdate()
