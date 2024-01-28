@@ -5,13 +5,14 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     public Transform player;
-    public HealthBarScript pHealth;
-    public float pain;
+    //public HealthBarScript pHealth;
+    //public float pain;
 
     public bool isFlipped = false;
 
     public void LookAtPlayer()
     {
+        Debug.Log("Looking!");
         Vector3 flipped = transform.localScale;
         flipped.z *= -1f;
 

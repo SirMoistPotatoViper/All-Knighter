@@ -7,6 +7,7 @@ public class Boss_Run : StateMachineBehaviour
 
     public float speed = 2.5f;
     public float attackRange = 3f;
+    public float detectionRange = 10f;
 
     Transform player;
     Rigidbody2D rb;
@@ -25,16 +26,20 @@ public class Boss_Run : StateMachineBehaviour
     {
         boss.LookAtPlayer();
 
-        
-        Vector2 target = new Vector2(player.position.x, rb.position.y);
-        Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
-        rb.MovePosition(newPos);
-
-       if (Vector2.Distance(player.position, rb.position) <= attackRange)
+        // Check if the player is within the detection range before moving towards them
+        if (Vector2.Distance(player.position, rb.position) <= detectionRange)
         {
-            //animator.SetTrigger("Attack");
+            Vector2 target = new Vector2(player.position.x, rb.position.y);
+            Vector2 newPos = Vector2.MoveTowards(rb.position, target, speed * Time.fixedDeltaTime);
+            rb.MovePosition(newPos);
+
+            if (Vector2.Distance(player.position, rb.position) <= attackRange)
+            {
+                //animator.SetTrigger("Attack");
+            }
         }
     }
+
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
