@@ -56,7 +56,7 @@ public class InPlayer : MonoBehaviour
         m_Animator = gameObject.GetComponent<Animator>();
         Debug.Log("Script starts");
         rb = GetComponent<Rigidbody2D>();
-        MPI = GetComponent<PlayerInput>();
+        //MPI = GetComponent<PlayerInput>();
         MPI.currentActionMap.Enable();
 
 
@@ -272,7 +272,6 @@ public class InPlayer : MonoBehaviour
         move.canceled += Handle_Move_Canceled;
         escape.performed += Handle_EscapePerformed;
     }
-
 
     /*private void Handle_Jump_Started(InputAction.CallbackContext context)
     {

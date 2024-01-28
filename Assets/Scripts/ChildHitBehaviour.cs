@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.Android.LowLevel;
+//using UnityEngine.InputSystem.Android.LowLevel;
 
 public class ChildHitBeviour : MonoBehaviour
 {
