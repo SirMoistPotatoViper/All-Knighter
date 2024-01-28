@@ -2,7 +2,11 @@ fileFormatVersion: 2
 guid: 1ab5725c4d2b3954faedc9ecb8805c4b
 NativeFormatImporter:
   externalObjects: {}
+<<<<<<< HEAD
   mainObjectFileID: 0
+=======
+  mainObjectFileID: 7400000
+>>>>>>> parent of 652c87d (Merge branch 'InHouseBranch' into NewMain)
   userData: 
   assetBundleName: 
   assetBundleVariant: 

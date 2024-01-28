@@ -5,11 +5,15 @@ using Pathfinding;
 using System;
 using System.Runtime.InteropServices;
 using Random = UnityEngine.Random;
+using UnityEditor.Experimental.GraphView;
+using Unity.VisualScripting;
+using UnityEngine.EventSystems;
 
 public class MotherAI : MonoBehaviour
 {
     List<Transform> waypoints = new List<Transform>();
     public Transform target;
+    public Transform player;
     public Transform pointA;
     public Transform pointB;
     public Transform pointC;
@@ -19,6 +23,9 @@ public class MotherAI : MonoBehaviour
     public Transform pointG;
     public Transform pointH;
     public Transform pointI;
+
+    public GameObject coneOfVision;
+    public GameObject MotherHunt;
 
     public int nextPoint;
 
@@ -37,13 +44,35 @@ public class MotherAI : MonoBehaviour
     {
         SetWaypoints();
 
-        speed = 200f;
-        nextWaypointDistance = 2f;
+        speed = 500;
+        nextWaypointDistance = 0.5f;
 
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
         InvokeRepeating("UpdatePath", 0f, 0.5f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "RealPlayer")
+        {
+            Vector2 raycastOrigin = gameObject.transform.position + new Vector3(0.1f, 0.1f, 0);
+            Vector2 raycastDirection = (player.transform.position - gameObject.transform.position).normalized;
+
+            gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            coneOfVision.GetComponent<CircleCollider2D>().enabled = false;
+            RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, raycastDirection);
+            Debug.DrawRay(raycastOrigin, raycastDirection, Color.white);
+
+            if (hit.collider.tag == "RealPlayer")
+            {
+                MotherHunt.gameObject.SetActive(true);
+                gameObject.GetComponent<CircleCollider2D>().enabled = true;
+                coneOfVision.GetComponent<CircleCollider2D>().enabled = true;
+                gameObject.SetActive(false);
+            }
+        }
     }
 
     void SetWaypoints()
@@ -102,6 +131,7 @@ public class MotherAI : MonoBehaviour
         Vector2 force = direction * speed * Time.deltaTime;
         transform.right = direction;
 
+
         rb.AddForce(force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
@@ -111,5 +141,4 @@ public class MotherAI : MonoBehaviour
             currentWaypoint++;
         }
     }
-
 }
