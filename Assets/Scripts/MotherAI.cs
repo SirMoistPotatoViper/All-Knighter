@@ -6,6 +6,7 @@ using System;
 using System.Runtime.InteropServices;
 using Random = UnityEngine.Random;
 using UnityEngine.InputSystem.Android.LowLevel;
+using Unity.VisualScripting;
 //using UnityEditor.Experimental.GraphView;
 //using Unity.VisualScripting;
 //using UnityEngine.EventSystems;
@@ -32,6 +33,8 @@ public class MotherAI : MonoBehaviour
     public GameObject coneOfVision;
     public GameObject MotherHunt;
     public GameObject Mother;
+
+    public GameObject heartBeat;
 
     public int nextPoint;
 
@@ -65,6 +68,7 @@ public class MotherAI : MonoBehaviour
     {
         if (collision.gameObject.tag == "RealPlayer")
         {
+            heartBeat.SetActive(true);
             Vector2 raycastOrigin = gameObject.transform.position + new Vector3(0.1f, 0.1f, 0);
             Vector2 raycastDirection = (player.transform.position - gameObject.transform.position).normalized;
 
@@ -85,6 +89,14 @@ public class MotherAI : MonoBehaviour
             {
                 StartCoroutine(Echolocation());
             }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Computer")
+        {
+            heartBeat.SetActive(false);
         }
     }
 

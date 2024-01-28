@@ -14,7 +14,6 @@ public class Boss : MonoBehaviour
 
     public void LookAtPlayer()
     {
-        Debug.Log("Looking!");
         Vector3 flipped = transform.localScale;
         flipped.z *= -1f;
         

@@ -14,6 +14,8 @@ public class ChildHitBeviour : MonoBehaviour
 
     public GameObject momScare;
 
+    public GameObject tab;
+
     public AudioClip momScream;
 
     public Vector3 spawnPoint;
@@ -52,6 +54,7 @@ public class ChildHitBeviour : MonoBehaviour
         if (collision.gameObject.tag == "Computer")
         {
             gameController.PlayGame();
+            tab.SetActive(true);
         }
     }
 
@@ -60,6 +63,7 @@ public class ChildHitBeviour : MonoBehaviour
         if (collision.gameObject.tag == "Computer")
         {
             gameController.DisableGame();
+            tab.SetActive(false);
         }
     }
 
