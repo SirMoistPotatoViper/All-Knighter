@@ -20,6 +20,10 @@ public class NewBehaviourScript : MonoBehaviour
     public float moveDirectionV;
     public float moveDirectionH;
 
+    public GameObject eepy1;
+    public GameObject eepy2;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -100,6 +104,17 @@ public class NewBehaviourScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (energy < 30)
+        {
+            eepy2.SetActive(true);
+        }
+        else if (energy <= 60)
+        {
+            eepy1.SetActive(true);
+        }
+        else
+        {
+            eepy1.SetActive(false); eepy2.SetActive(false);
+        }
     }
 }
