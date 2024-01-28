@@ -16,6 +16,11 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void LoadTitleScreen()
+    {
+        SceneManager.LoadScene("HomeScreen");
+    }
+
     public void QuitGame()
     {
         Application.Quit();
