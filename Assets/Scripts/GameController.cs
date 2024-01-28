@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -13,6 +14,7 @@ public class NewBehaviourScript : MonoBehaviour
     public PlayerInput playerControls;
     private InputAction moveVertical;
     private InputAction moveHorizontal;
+    private InputAction quit;
     public InputAction playGame;
 
     public AudioClip footsteps;
@@ -24,6 +26,9 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject mother;
     public GameObject shooterCharacter;
     public new GameObject camera;
+
+    public GameObject stealthMusic;
+    public GameObject chaseMusic;
 
     public Slider energyBar;
     public int energy;
@@ -52,6 +57,9 @@ public class NewBehaviourScript : MonoBehaviour
         moveHorizontal.canceled += moveHorizontal_Canceled;
         playGame = playerControls.currentActionMap.FindAction("PlayGame");
         playGame.started -= PlayGame_started;
+        quit = playerControls.currentActionMap.FindAction("Quit");
+        quit.started += Quit_started;
+        
 
         animator = childGFX.GetComponent<Animator>();
 
@@ -60,7 +68,14 @@ public class NewBehaviourScript : MonoBehaviour
         energy = 120;
         energyBar.value = energy;
 
+        EnableControls();
+
         StartCoroutine(EnergyDrain());
+    }
+
+    private void Quit_started(InputAction.CallbackContext obj)
+    {
+        Application.Quit();
     }
 
     private void PlayGame_started(InputAction.CallbackContext obj)
@@ -167,6 +182,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public void DisableControls()
     {
+        stealthMusic.SetActive(false);
         moveVertical.started -= moveVertical_Started;
         moveVertical.canceled -= moveVertical_Canceled;
         moveHorizontal.started -= moveHorizontal_Started;
@@ -175,6 +191,7 @@ public class NewBehaviourScript : MonoBehaviour
     
     public void EnableControls()
     {
+        stealthMusic.SetActive(true);
         moveVertical.started += moveVertical_Started;
         moveVertical.canceled += moveVertical_Canceled;
         moveHorizontal.started += moveHorizontal_Started;
