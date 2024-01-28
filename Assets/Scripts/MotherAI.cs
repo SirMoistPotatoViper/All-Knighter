@@ -82,7 +82,7 @@ public class MotherAI : MonoBehaviour
     IEnumerator Echolocation()
     {
         coneOfVision.GetComponent<CircleCollider2D>().enabled = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.1f);
         coneOfVision.GetComponent<CircleCollider2D>().enabled=true;
     }
 
