@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public float flashDuration = 0.1f;
     public Color flashColor = Color.red;
     private SpriteRenderer spriteRenderer;
+    public float deathEffectDuration = 0.8f;
 
 
     public GameObject deathEffect;
@@ -24,6 +25,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
+            deathEffect.SetActive(true);
             Die();
         }
         else
@@ -43,9 +45,16 @@ public class Enemy : MonoBehaviour
     }
 
 
-    void Die ()
+    void Die()
     {
+        //deathEffect.SetActive(true);
+        GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+        Destroy(effect, deathEffectDuration);
+
+
         //make the animator bool trigger the death bool
-        Destroy(gameObject);
+        //yield return new WaitForSeconds(1);
+        Destroy(gameObject, deathEffectDuration - 0.25f);
     }
 }

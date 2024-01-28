@@ -5,6 +5,8 @@ using UnityEngine;
 public class Boss : MonoBehaviour
 {
     public Transform player;
+    public HealthBarScript pHealth;
+    public float pain;
 
     public bool isFlipped = false;
 
@@ -24,6 +26,14 @@ public class Boss : MonoBehaviour
             transform.localScale = flipped;
             transform.Rotate(0f, 180f, 0f);
             isFlipped = true;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            pHealth.health -= pain;
         }
     }
 }
