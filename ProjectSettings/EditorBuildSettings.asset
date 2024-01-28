@@ -6,9 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/HomeScreen.unity
+    guid: ff4ca92c050d35941803049f1eef2be9
   - enabled: 1
     path: Assets/Scenes/Lucca.unity
     guid: 104a6050e9eed7b418dad4320697dc62
+  - enabled: 1
+    path: Assets/Scenes/WinScene.unity
+    guid: 2e89f524620f8ab4fb22e4ed43d736d8
+  - enabled: 1
+    path: Assets/Scenes/SampleScene.unity
+    guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/LoseScene.unity
+    guid: 991e0f043f28dc24e916ca60bdc696c9
   m_configObjects: {}
