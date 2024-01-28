@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-
+    Animator m_Animator;
     public int health = 100;
     public float flashDuration = 0.1f;
     public Color flashColor = Color.red;
@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        m_Animator = gameObject.GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
@@ -25,6 +26,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
+            m_Animator.SetTrigger("dead");
             deathEffect.SetActive(true);
             Die();
         }
@@ -55,6 +57,6 @@ public class Enemy : MonoBehaviour
 
         //make the animator bool trigger the death bool
         //yield return new WaitForSeconds(1);
-        Destroy(gameObject, deathEffectDuration - 0.25f);
+        Destroy(gameObject, deathEffectDuration);
     }
 }

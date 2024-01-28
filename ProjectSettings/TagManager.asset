@@ -8,6 +8,9 @@ TagManager:
   - Ground
   - RealPlayer
   - Enemy
+  - Spike
+  - Ebullet
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -18,8 +21,8 @@ TagManager:
   - Obstacles
   - 
   - 
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 

@@ -7,11 +7,13 @@ public class EnemyShooting : MonoBehaviour
     public GameObject bullet;
     public Transform bulletPos;
     private GameObject player;
+    Animator m_Animator;
 
     private float timer;
     // Start is called before the first frame update
     void Start()
     {
+        m_Animator = gameObject.GetComponent<Animator>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -37,6 +39,7 @@ public class EnemyShooting : MonoBehaviour
 
     void shoot()
     {
+        m_Animator.SetTrigger("shoot");
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
     }
 }
