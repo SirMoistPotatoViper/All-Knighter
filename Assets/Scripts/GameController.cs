@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
@@ -176,7 +177,7 @@ public class NewBehaviourScript : MonoBehaviour
         }
         else if (energy <= 0)
         {
-            //insert end game here
+            SceneManager.LoadScene(4);
         }
     }
 

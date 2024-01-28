@@ -5,6 +5,7 @@ using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 
@@ -184,6 +185,14 @@ public class InPlayer : MonoBehaviour
         transform.localScale = localScale;*/
 
         transform.Rotate(0f, 180f, 0f);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == "Portal")
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
     private void Handle_ShootPerformed(InputAction.CallbackContext context)

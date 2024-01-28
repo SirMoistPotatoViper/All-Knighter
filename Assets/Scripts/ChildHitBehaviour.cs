@@ -12,6 +12,10 @@ public class ChildHitBeviour : MonoBehaviour
     public GameObject MotherHunt;
     public GameObject Player;
 
+    public GameObject momScare;
+
+    public AudioClip momScream;
+
     public Vector3 spawnPoint;
 
     // Start is called before the first frame update
@@ -27,6 +31,8 @@ public class ChildHitBeviour : MonoBehaviour
     {
         if (collision.gameObject.tag == "EvilMother")
         {
+            StartCoroutine(MomJumpscare());
+
             Player.transform.position = spawnPoint;
 
             gameController.energy = gameController.energy - 50;
@@ -55,6 +61,14 @@ public class ChildHitBeviour : MonoBehaviour
         {
             gameController.DisableGame();
         }
+    }
+
+    IEnumerator MomJumpscare() 
+    {
+        momScare.SetActive(true);
+        AudioSource.PlayClipAtPoint(momScream, transform.position);
+        yield return new WaitForSeconds(1);
+        momScare.SetActive(false);
     }
 
     // Update is called once per frame
