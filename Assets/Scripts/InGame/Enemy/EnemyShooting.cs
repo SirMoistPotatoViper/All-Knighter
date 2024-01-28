@@ -8,6 +8,7 @@ public class EnemyShooting : MonoBehaviour
     public Transform bulletPos;
     private GameObject player;
     Animator m_Animator;
+    public AudioClip enemyShootSound;
 
     private float timer;
     // Start is called before the first frame update
@@ -39,6 +40,7 @@ public class EnemyShooting : MonoBehaviour
 
     void shoot()
     {
+        AudioSource.PlayClipAtPoint(enemyShootSound, transform.position);
         m_Animator.SetTrigger("shoot");
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
     }

@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     public Color flashColor = Color.red;
     private SpriteRenderer spriteRenderer;
     public float deathEffectDuration = 0.8f;
+    public AudioClip deathSound;
 
 
     public GameObject deathEffect;
@@ -49,6 +50,7 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        AudioSource.PlayClipAtPoint(deathSound, transform.position);
         //deathEffect.SetActive(true);
         GameObject effect = Instantiate(deathEffect, transform.position, Quaternion.identity);
 
