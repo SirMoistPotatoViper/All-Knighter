@@ -39222,6 +39222,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerControls: {fileID: 2047358125}
+  footsteps: {fileID: 8300000, guid: eee97dcb1ef8b3d4983e6b0330b75907, type: 3}
   animator: {fileID: 0}
   player: {fileID: 462773408}
   childGFX: {fileID: 34799704}
@@ -39229,6 +39230,7 @@ MonoBehaviour:
   energyBar: {fileID: 543737040}
   energy: 0
   directionFacing: 
+  isMoving: 0
   moveDirectionV: 0
   moveDirectionH: 0
   eepy1: {fileID: 1004819914}

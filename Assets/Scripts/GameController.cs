@@ -11,6 +11,8 @@ public class NewBehaviourScript : MonoBehaviour
     private InputAction moveVertical;
     private InputAction moveHorizontal;
 
+    public AudioClip footsteps;
+
     public Animator animator;
 
     public GameObject player;
