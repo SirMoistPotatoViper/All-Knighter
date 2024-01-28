@@ -10,6 +10,8 @@ using static UnityEngine.Rendering.VirtualTexturing.Debugging;
 
 public class InPlayer : MonoBehaviour
 {
+    public NewBehaviourScript gameController;
+    public FollowPlayer cameraBehaviour;
 
     public Rigidbody2D rb;
     public Transform groundCheck;
@@ -26,6 +28,7 @@ public class InPlayer : MonoBehaviour
     private InputAction quit;
     private InputAction jump;
     private InputAction shoot;
+    private InputAction escape;
     HealthBarScript health;
     public AudioClip laserSound;
     public AudioClip jumpSound;
@@ -44,6 +47,9 @@ public class InPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameController = GameObject.FindObjectOfType<NewBehaviourScript>();
+        cameraBehaviour = GameObject.FindObjectOfType<FollowPlayer>();
+
         m_Animator = gameObject.GetComponent<Animator>();
         Debug.Log("Script starts");
         rb = GetComponent<Rigidbody2D>();
@@ -57,6 +63,7 @@ public class InPlayer : MonoBehaviour
         quit = MPI.currentActionMap.FindAction("quit");
         jump = MPI.currentActionMap.FindAction("jump");
         shoot = MPI.currentActionMap.FindAction("shoot");
+        escape = MPI.currentActionMap.FindAction("escape");
 
 
 
@@ -71,6 +78,24 @@ public class InPlayer : MonoBehaviour
         quit.performed += Handle_QuitPerformed;
         shoot.performed += Handle_ShootPerformed;
 
+        //escape.started += Escape_started;
+        escape.started += Handle_EscapePerformed;
+
+        DisableControls();
+    }
+
+    private void Handle_EscapePerformed(InputAction.CallbackContext context)
+    {
+        Debug.Log("This should go");
+        cameraBehaviour.inGame = false;
+        gameController.EnableControls();
+        DisableControls();
+    }
+
+    private void Escape_started(InputAction.CallbackContext obj)
+    {
+        cameraBehaviour.inGame = false;
+        gameController.DisableControls();
     }
 
     private void Handle_Jump_Canceled(InputAction.CallbackContext context)
@@ -211,6 +236,32 @@ public class InPlayer : MonoBehaviour
         // rb.velocity = new Vector2(0, rb.velocity.y);
         //Debug.Log("Not moving anymore.");
         //}
+    }
+
+    public void DisableControls()
+    {
+        //Remove control when OnDestroy activates
+        jump.started -= Handle_JumpPerformed;
+        move.started -= Handle_MovePerformed;
+        //move.canceled -= Handle_MoveCanceled;
+        restart.performed -= Handle_RestartPerformed;
+        quit.performed -= Handle_QuitPerformed;
+        shoot.performed -= Handle_ShootPerformed;
+        move.canceled -= Handle_Move_Canceled;
+        escape.performed -= Escape_started;
+    }
+
+    public void EnableControls()
+    {
+        //Remove control when OnDestroy activates
+        jump.started += Handle_JumpPerformed;
+        move.started += Handle_MovePerformed;
+        //move.canceled -= Handle_MoveCanceled;
+        restart.performed += Handle_RestartPerformed;
+        quit.performed += Handle_QuitPerformed;
+        shoot.performed += Handle_ShootPerformed;
+        move.canceled += Handle_Move_Canceled;
+        escape.performed += Escape_started;
     }
 
 

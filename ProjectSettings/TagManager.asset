@@ -13,6 +13,7 @@ TagManager:
   - Checkpoint
   - SafeZone
   - EvilMother
+  - Computer
   layers:
   - Default
   - TransparentFX

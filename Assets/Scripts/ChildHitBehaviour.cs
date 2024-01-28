@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.Android.LowLevel;
 
-public class MotherHuntBehaviour : MonoBehaviour
+public class ChildHitBeviour : MonoBehaviour
 {
     public MotherAI motherAI;
     public NewBehaviourScript gameController;
@@ -36,6 +36,22 @@ public class MotherHuntBehaviour : MonoBehaviour
             motherAI.Mother.transform.position = new Vector3(motherAI.MotherHunt.transform.position.x,
                 motherAI.MotherHunt.transform.position.y);
             motherAI.MotherHunt.SetActive(false);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Computer")
+        {
+            gameController.PlayGame();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Computer")
+        {
+            gameController.DisableGame();
         }
     }
 

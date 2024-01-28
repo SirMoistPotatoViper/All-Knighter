@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
+//using System.Collections;
 //using UnityEngine.UIElements;
 
 public class HealthBarScript : MonoBehaviour

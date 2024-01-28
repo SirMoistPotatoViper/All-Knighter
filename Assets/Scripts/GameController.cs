@@ -7,9 +7,13 @@ using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public InPlayer inPlayer;
+    public FollowPlayer cameraBehaviour;
+
     public PlayerInput playerControls;
     private InputAction moveVertical;
     private InputAction moveHorizontal;
+    public InputAction playGame;
 
     public AudioClip footsteps;
 
@@ -18,6 +22,8 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject player;
     public GameObject childGFX;
     public GameObject mother;
+    public GameObject shooterCharacter;
+    public new GameObject camera;
 
     public Slider energyBar;
     public int energy;
@@ -34,6 +40,9 @@ public class NewBehaviourScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        inPlayer = GameObject.FindObjectOfType<InPlayer>();
+        cameraBehaviour = GameObject.FindObjectOfType<FollowPlayer>();
+
         playerControls.currentActionMap.Enable();
         moveVertical = playerControls.currentActionMap.FindAction("MoveVertical");
         moveVertical.started += moveVertical_Started;
@@ -41,6 +50,8 @@ public class NewBehaviourScript : MonoBehaviour
         moveHorizontal = playerControls.currentActionMap.FindAction("MoveHorizontal");
         moveHorizontal.started += moveHorizontal_Started;
         moveHorizontal.canceled += moveHorizontal_Canceled;
+        playGame = playerControls.currentActionMap.FindAction("PlayGame");
+        playGame.started -= PlayGame_started;
 
         animator = childGFX.GetComponent<Animator>();
 
@@ -50,6 +61,13 @@ public class NewBehaviourScript : MonoBehaviour
         energyBar.value = energy;
 
         StartCoroutine(EnergyDrain());
+    }
+
+    private void PlayGame_started(InputAction.CallbackContext obj)
+    {
+        cameraBehaviour.inGame = true;
+        inPlayer.EnableControls();
+        DisableControls();
     }
 
     private void moveHorizontal_Started(InputAction.CallbackContext context)
@@ -145,6 +163,32 @@ public class NewBehaviourScript : MonoBehaviour
         {
             //insert end game here
         }
+    }
+
+    public void DisableControls()
+    {
+        moveVertical.started -= moveVertical_Started;
+        moveVertical.canceled -= moveVertical_Canceled;
+        moveHorizontal.started -= moveHorizontal_Started;
+        moveHorizontal.canceled -= moveHorizontal_Canceled;
+    }
+    
+    public void EnableControls()
+    {
+        moveVertical.started += moveVertical_Started;
+        moveVertical.canceled += moveVertical_Canceled;
+        moveHorizontal.started += moveHorizontal_Started;
+        moveHorizontal.canceled += moveHorizontal_Canceled;
+    }
+
+    public void PlayGame()
+    {
+        playGame.started += PlayGame_started;
+    }
+
+    public void DisableGame()
+    {
+        playGame.started -= PlayGame_started;
     }
 
     private void FixedUpdate()
