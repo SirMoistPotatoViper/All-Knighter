@@ -75,17 +75,13 @@ public class MotherAI : MonoBehaviour
             {
                 StartCoroutine(Echolocation());
             }
-            //MotherHunt.gameObject.SetActive(true);
-            //gameObject.GetComponent<CircleCollider2D>().enabled = true;
-            //coneOfVision.GetComponent<CircleCollider2D>().enabled = true;
-            //gameObject.SetActive(false);
         }
     }
 
     IEnumerator Echolocation()
     {
         coneOfVision.GetComponent<CircleCollider2D>().enabled = false;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         coneOfVision.GetComponent<CircleCollider2D>().enabled=true;
     }
 
