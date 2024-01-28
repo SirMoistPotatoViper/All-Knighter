@@ -1497,7 +1497,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.92156863}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -39094,6 +39094,7 @@ MonoBehaviour:
   mother: {fileID: 2048283778}
   energyBar: {fileID: 543737040}
   energy: 0
+  directionFacing: 
   moveDirectionV: 0
   moveDirectionH: 0
   eepy1: {fileID: 1004819914}
