@@ -35,7 +35,9 @@ public class InPlayer : MonoBehaviour
 
     public GameObject walkSound;
 
+    public GameObject healthBar;
 
+    public GameObject inGameMusic;
 
     [SerializeField]
     public Transform firePoint;
@@ -90,12 +92,6 @@ public class InPlayer : MonoBehaviour
         cameraBehaviour.inGame = false;
         gameController.EnableControls();
         DisableControls();
-    }
-
-    private void Escape_started(InputAction.CallbackContext obj)
-    {
-        cameraBehaviour.inGame = false;
-        gameController.DisableControls();
     }
 
     private void Handle_Jump_Canceled(InputAction.CallbackContext context)
@@ -206,7 +202,7 @@ public class InPlayer : MonoBehaviour
 
     private void Handle_QuitPerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("Quit");
+        Debug.Log("quit");
     }
 
     private void Handle_RestartPerformed(InputAction.CallbackContext context)
@@ -240,6 +236,8 @@ public class InPlayer : MonoBehaviour
 
     public void DisableControls()
     {
+        inGameMusic.SetActive(false);
+        healthBar.SetActive(false);
         //Remove control when OnDestroy activates
         jump.started -= Handle_JumpPerformed;
         move.started -= Handle_MovePerformed;
@@ -248,11 +246,13 @@ public class InPlayer : MonoBehaviour
         quit.performed -= Handle_QuitPerformed;
         shoot.performed -= Handle_ShootPerformed;
         move.canceled -= Handle_Move_Canceled;
-        escape.performed -= Escape_started;
+        escape.performed -= Handle_EscapePerformed;
     }
 
     public void EnableControls()
     {
+        inGameMusic.SetActive(true);
+        healthBar.SetActive(true);
         //Remove control when OnDestroy activates
         jump.started += Handle_JumpPerformed;
         move.started += Handle_MovePerformed;
@@ -261,7 +261,7 @@ public class InPlayer : MonoBehaviour
         quit.performed += Handle_QuitPerformed;
         shoot.performed += Handle_ShootPerformed;
         move.canceled += Handle_Move_Canceled;
-        escape.performed += Escape_started;
+        escape.performed += Handle_EscapePerformed;
     }
 
 

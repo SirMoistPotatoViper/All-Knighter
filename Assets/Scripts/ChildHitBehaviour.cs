@@ -31,6 +31,8 @@ public class ChildHitBeviour : MonoBehaviour
 
             gameController.energy = gameController.energy - 50;
 
+            gameController.stealthMusic.SetActive(true);
+            gameController.chaseMusic.SetActive(false);
             motherAI.Mother.SetActive(true);
             motherAI.coneOfVision.GetComponent<CircleCollider2D>().enabled = true;
             motherAI.Mother.transform.position = new Vector3(motherAI.MotherHunt.transform.position.x,
