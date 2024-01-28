@@ -26,6 +26,7 @@ public class MotherAI : MonoBehaviour
 
     public GameObject coneOfVision;
     public GameObject MotherHunt;
+    public GameObject Mother;
 
     public int nextPoint;
 
@@ -149,5 +150,7 @@ public class MotherAI : MonoBehaviour
         {
             currentWaypoint++;
         }
+
+        MotherHunt.transform.position = Mother.transform.position;
     }
 }
