@@ -938,7 +938,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Shift
+  m_Text: 'Escape
 
     Exit
 
@@ -2562,7 +2562,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f7e93b189271aa64a9aef60e11d20fda, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d14a118944c18f4408b2378b03c70d23, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
