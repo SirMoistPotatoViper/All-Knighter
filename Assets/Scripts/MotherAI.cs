@@ -5,12 +5,16 @@ using Pathfinding;
 using System;
 using System.Runtime.InteropServices;
 using Random = UnityEngine.Random;
-using UnityEditor.Experimental.GraphView;
-using Unity.VisualScripting;
-using UnityEngine.EventSystems;
+using UnityEngine.InputSystem.Android.LowLevel;
+//using UnityEditor.Experimental.GraphView;
+//using Unity.VisualScripting;
+//using UnityEngine.EventSystems;
+//using UnityEngine.InputSystem.Android.LowLevel;
 
 public class MotherAI : MonoBehaviour
 {
+    public NewBehaviourScript gameController;
+
     List<Transform> waypoints = new List<Transform>();
     public Transform target;
     public Transform player;
@@ -44,6 +48,8 @@ public class MotherAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameController = GameObject.FindObjectOfType<NewBehaviourScript>();
+
         SetWaypoints();
 
         speed = 500;
@@ -69,6 +75,8 @@ public class MotherAI : MonoBehaviour
 
             if (hit.collider.tag == "RealPlayer")
             {
+                gameController.stealthMusic.SetActive(false);
+                gameController.chaseMusic.SetActive(true);
                 MotherHunt.gameObject.SetActive(true);
                 MotherHunt.transform.position = gameObject.transform.position;
                 gameObject.SetActive(false);
