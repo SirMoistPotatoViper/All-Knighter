@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - RealPlayer
   - SafeZone
+  - EvilMother
   layers:
   - Default
   - TransparentFX
