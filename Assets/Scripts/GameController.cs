@@ -11,12 +11,16 @@ public class NewBehaviourScript : MonoBehaviour
     private InputAction moveVertical;
     private InputAction moveHorizontal;
 
+    public Animator animator;
+
     public GameObject player;
     public GameObject childGFX;
     public GameObject mother;
 
     public Slider energyBar;
     public int energy;
+
+    public string directionFacing;
 
     public float moveDirectionV;
     public float moveDirectionH;
@@ -36,6 +40,10 @@ public class NewBehaviourScript : MonoBehaviour
         moveHorizontal.started += moveHorizontal_Started;
         moveHorizontal.canceled += moveHorizontal_Canceled;
 
+        animator = childGFX.GetComponent<Animator>();
+
+        directionFacing = "Up";
+
         energy = 120;
         energyBar.value = energy;
 
@@ -44,37 +52,77 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void moveHorizontal_Started(InputAction.CallbackContext context)
     {
+        animator.SetBool("Walking", true); 
         moveDirectionH = moveHorizontal.ReadValue<float>();
         if (moveDirectionH < 0)
         {
-
+            if (directionFacing == "Up") {childGFX.transform.Rotate(0, 0, 90); directionFacing = "Left"; }
+            if (directionFacing == "Right") {childGFX.transform.Rotate(0, 0, 180); directionFacing = "Left"; }
+            if (directionFacing == "Down") { childGFX.transform.Rotate(0, 0, -90); directionFacing = "Left"; }
         }
         else if (moveDirectionH > 0)
         {
-
+            if (directionFacing == "Up") { childGFX.transform.Rotate(0, 0, -90); directionFacing = "Right"; }
+            if (directionFacing == "Left") { childGFX.transform.Rotate(0, 0, -180); directionFacing = "Right"; }
+            if (directionFacing == "Down") { childGFX.transform.Rotate(0, 0, 90); directionFacing = "Right"; }
         }
     }
     private void moveHorizontal_Canceled(InputAction.CallbackContext context)
     {
         moveDirectionH = 0;
+        animator.SetBool("Walking", false);
+        if (moveDirectionV < 0)
+        {
+            animator.SetBool("Walking", true);
+            if (directionFacing == "Up") { childGFX.transform.Rotate(0, 0, 180); directionFacing = "Down"; }
+            if (directionFacing == "Right") { childGFX.transform.Rotate(0, 0, -90); directionFacing = "Down"; }
+            if (directionFacing == "Left") { childGFX.transform.Rotate(0, 0, 90); directionFacing = "Down"; }
+        }
+        else if (moveDirectionV > 0)
+        {
+            animator.SetBool("Walking", true);
+            if (directionFacing == "Down") { childGFX.transform.Rotate(0, 0, -180); directionFacing = "Up"; }
+            if (directionFacing == "Right") { childGFX.transform.Rotate(0, 0, 90); directionFacing = "Up"; }
+            if (directionFacing == "Left") { childGFX.transform.Rotate(0, 0, -90); directionFacing = "Up"; }
+        }
     }
 
     private void moveVertical_Started(InputAction.CallbackContext context)
     {
+        animator.SetBool("Walking", true);
         moveDirectionV = moveVertical.ReadValue<float>();
         if (moveDirectionV < 0)
         {
-
+            if (directionFacing == "Up") { childGFX.transform.Rotate(0, 0, 180); directionFacing = "Down"; }
+            if (directionFacing == "Right") { childGFX.transform.Rotate(0, 0, -90); directionFacing = "Down"; }
+            if (directionFacing == "Left") { childGFX.transform.Rotate(0, 0, 90); directionFacing = "Down"; }
         }   
         else if (moveDirectionV > 0)
         {
-
+            if (directionFacing == "Down") { childGFX.transform.Rotate(0, 0, -180); directionFacing = "Up"; }
+            if (directionFacing == "Right") { childGFX.transform.Rotate(0, 0, 90); directionFacing = "Up"; }
+            if (directionFacing == "Left") { childGFX.transform.Rotate(0, 0, -90); directionFacing = "Up"; }
         }
     }
 
     private void moveVertical_Canceled(InputAction.CallbackContext context)
     {
         moveDirectionV = 0;
+        animator.SetBool("Walking", false);
+        if (moveDirectionH < 0)
+        {
+            animator.SetBool("Walking", true);
+            if (directionFacing == "Up") { childGFX.transform.Rotate(0, 0, 90); directionFacing = "Left"; }
+            if (directionFacing == "Right") { childGFX.transform.Rotate(0, 0, 180); directionFacing = "Left"; }
+            if (directionFacing == "Down") { childGFX.transform.Rotate(0, 0, -90); directionFacing = "Left"; }
+        }
+        else if (moveDirectionH > 0)
+        {
+            animator.SetBool("Walking", true);
+            if (directionFacing == "Up") { childGFX.transform.Rotate(0, 0, -90); directionFacing = "Right"; }
+            if (directionFacing == "Left") { childGFX.transform.Rotate(0, 0, -180); directionFacing = "Right"; }
+            if (directionFacing == "Down") { childGFX.transform.Rotate(0, 0, 90); directionFacing = "Right"; }
+        }
     }
 
     IEnumerator EnergyDrain()
