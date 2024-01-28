@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class SafeAreaBehaviour : MonoBehaviour
 {
+    public NewBehaviourScript gameController;
+
     public bool inSafeZone;
 
     public MotherAI motherAI;
@@ -12,12 +14,15 @@ public class SafeAreaBehaviour : MonoBehaviour
     void Start()
     {
         motherAI = GameObject.FindObjectOfType<MotherAI>();
+        gameController = GameObject.FindObjectOfType<NewBehaviourScript>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "RealPlayer")
         {
+            gameController.stealthMusic.SetActive(true);
+            gameController.chaseMusic.SetActive(false);
             inSafeZone = true;
             motherAI.Mother.SetActive(true);
             motherAI.coneOfVision.GetComponent<CircleCollider2D>().enabled = true;
