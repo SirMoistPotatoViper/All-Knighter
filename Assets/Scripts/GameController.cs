@@ -40,6 +40,14 @@ public class NewBehaviourScript : MonoBehaviour
     private void moveHorizontal_Started(InputAction.CallbackContext context)
     {
         moveDirectionH = moveHorizontal.ReadValue<float>();
+        if (moveDirectionH < 0)
+        {
+            player.transform.Rotate(new Vector3(0, 0, 0));
+        }
+        else
+        {
+            player.transform.Rotate(new Vector3(0, 0, -180));
+        }
     }
     private void moveHorizontal_Canceled(InputAction.CallbackContext context)
     {
@@ -49,6 +57,14 @@ public class NewBehaviourScript : MonoBehaviour
     private void moveVertical_Started(InputAction.CallbackContext context)
     {
         moveDirectionV = moveVertical.ReadValue<float>();
+        if (moveDirectionV < 0)
+        {
+            player.transform.Rotate(new Vector3(0, 0, -270));
+        }
+        else
+        {
+            player.transform.Rotate(new Vector3(0, 0, -90));
+        }
     }
 
     private void moveVertical_Canceled(InputAction.CallbackContext context)
