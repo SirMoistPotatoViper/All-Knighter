@@ -22,7 +22,7 @@ public class BottleGrab : MonoBehaviour
     {
         if(collider.gameObject.CompareTag("RealPlayer") == true)
         {
-            gc.GetComponent<NewBehaviourScript>().energy = 120;
+            gc.GetComponent<NewBehaviourScript>().energy = 100;
             Destroy(gameObject);
         }
     }

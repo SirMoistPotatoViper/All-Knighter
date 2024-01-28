@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
 public class ComputerEnter : MonoBehaviour
 {
+    /*
     public GameObject player;
     public GameObject enterCom;
     public Camera topCam;
@@ -88,4 +90,5 @@ public class ComputerEnter : MonoBehaviour
             topCam.orthographicSize = 5;
         }
     }
+    */
 }

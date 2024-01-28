@@ -66,7 +66,7 @@ public class NewBehaviourScript : MonoBehaviour
 
         directionFacing = "Up";
 
-        energy = 120;
+        energy = 100;
         energyBar.value = energy;
 
         EnableControls();

@@ -15,7 +15,7 @@ public class HealthBarScript : MonoBehaviour
     public Color flashColor = Color.red;
     private SpriteRenderer spriteRenderer;
 
-    public float regenerationRate = 1f;
+    public float regenerationRate = 0.5f;
 
     [SerializeField] private float invulnerbilityDuration;
     [SerializeField] private int numberOfFlashes;
