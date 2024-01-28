@@ -68,11 +68,25 @@ public class MotherAI : MonoBehaviour
             if (hit.collider.tag == "RealPlayer")
             {
                 MotherHunt.gameObject.SetActive(true);
-                gameObject.GetComponent<CircleCollider2D>().enabled = true;
-                coneOfVision.GetComponent<CircleCollider2D>().enabled = true;
+                MotherHunt.transform.position = gameObject.transform.position;
                 gameObject.SetActive(false);
             }
+            else
+            {
+                StartCoroutine(Echolocation());
+            }
+            //MotherHunt.gameObject.SetActive(true);
+            //gameObject.GetComponent<CircleCollider2D>().enabled = true;
+            //coneOfVision.GetComponent<CircleCollider2D>().enabled = true;
+            //gameObject.SetActive(false);
         }
+    }
+
+    IEnumerator Echolocation()
+    {
+        coneOfVision.GetComponent<CircleCollider2D>().enabled = false;
+        yield return new WaitForSeconds(0.1f);
+        coneOfVision.GetComponent<CircleCollider2D>().enabled=true;
     }
 
     void SetWaypoints()
