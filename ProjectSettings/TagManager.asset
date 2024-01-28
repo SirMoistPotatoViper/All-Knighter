@@ -11,6 +11,8 @@ TagManager:
   - Spike
   - Ebullet
   - Checkpoint
+  - SafeZone
+  - EvilMother
   layers:
   - Default
   - TransparentFX
