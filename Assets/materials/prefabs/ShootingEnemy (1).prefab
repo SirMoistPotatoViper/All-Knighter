@@ -36,7 +36,7 @@ Transform:
   - {fileID: 8731989791624215257}
   - {fileID: 8421429799596950167}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6499215376810267228
 SpriteRenderer:
@@ -141,6 +141,7 @@ MonoBehaviour:
   flashDuration: 0.1
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   deathEffectDuration: 1
+  deathSound: {fileID: 8300000, guid: 1c45ee2f5ca5a7743a68a536fd565013, type: 3}
   deathEffect: {fileID: 2752548463761936965}
 --- !u!114 &6984870230372658874
 MonoBehaviour:
@@ -156,6 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 2187274617132741126, guid: 2dd3598d5745559419ea1f24bd82f0ae, type: 3}
   bulletPos: {fileID: 8731989791624215257}
+  enemyShootSound: {fileID: 8300000, guid: c14976fe4fdd536498bd66cbbdac4473, type: 3}
 --- !u!95 &3566437353728124322
 Animator:
   serializedVersion: 5

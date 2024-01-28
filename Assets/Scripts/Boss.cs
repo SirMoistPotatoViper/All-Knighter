@@ -7,6 +7,8 @@ public class Boss : MonoBehaviour
     public Transform player;
     //public HealthBarScript pHealth;
     //public float pain;
+    //public AudioClip wheelSound;
+    //public GameObject wheelSound;
 
     public bool isFlipped = false;
 
@@ -15,6 +17,7 @@ public class Boss : MonoBehaviour
         Debug.Log("Looking!");
         Vector3 flipped = transform.localScale;
         flipped.z *= -1f;
+        
 
         if (transform.position.x > player.position.x && isFlipped)
         {

@@ -15,12 +15,14 @@ public class HealthBarScript : MonoBehaviour
     public Color flashColor = Color.red;
     private SpriteRenderer spriteRenderer;
 
-    public float regenerationRate = 5f;
+    public float regenerationRate = 2f;
 
     [SerializeField] private float invulnerbilityDuration;
     [SerializeField] private int numberOfFlashes;
-    
 
+
+    public AudioClip deathSound;
+    public AudioClip hurtSound;
 
     public Transform respawnPosition;
     public Transform defaultRespawnPosition;
@@ -45,6 +47,7 @@ public class HealthBarScript : MonoBehaviour
 
         if (health <= 0)
         {
+            AudioSource.PlayClipAtPoint(deathSound, transform.position);
             Debug.Log("Player Dead");
             m_Animator.SetTrigger("dead");
             m_Animator.SetBool("deadStill", true);
@@ -114,6 +117,7 @@ public class HealthBarScript : MonoBehaviour
     }
     public void TakeDamage()
     {
+        AudioSource.PlayClipAtPoint(hurtSound, transform.position);
         StartCoroutine(FlashRed());
         
         health -= 20;

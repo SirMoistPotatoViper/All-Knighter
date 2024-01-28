@@ -27,6 +27,11 @@ public class InPlayer : MonoBehaviour
     private InputAction jump;
     private InputAction shoot;
     HealthBarScript health;
+    public AudioClip laserSound;
+    public AudioClip jumpSound;
+
+    public GameObject walkSound;
+
 
 
     [SerializeField]
@@ -79,6 +84,7 @@ public class InPlayer : MonoBehaviour
 
     private void Handle_Move_Canceled(InputAction.CallbackContext context)
     {
+        walkSound.SetActive(false);
         Debug.Log("Pls");
         horizontal = 0f;
         rb.velocity = new Vector2(0, rb.velocity.y);
@@ -87,6 +93,7 @@ public class InPlayer : MonoBehaviour
 
     private void Handle_JumpPerformed(InputAction.CallbackContext context)
     {
+        AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         m_Animator.SetTrigger("boing");
         Debug.Log("Read this");
         if (IsGrounded())
@@ -163,6 +170,7 @@ public class InPlayer : MonoBehaviour
         Debug.Log("shoot");
         Shoot();
         m_Animator.SetTrigger("shoot");
+        AudioSource.PlayClipAtPoint(laserSound, transform.position);
     }
 
     void Shoot ()
@@ -190,10 +198,10 @@ public class InPlayer : MonoBehaviour
     {
         //Debug.Log("Ugh");
 
-        
-       
-            // Input is actively performed (button pressed or held)
-            horizontal = context.ReadValue<Vector2>().x;
+
+       walkSound.SetActive(true);
+    // Input is actively performed (button pressed or held)
+    horizontal = context.ReadValue<Vector2>().x;
             Debug.Log("Moving!");
         m_Animator.SetBool("run", true);
 
