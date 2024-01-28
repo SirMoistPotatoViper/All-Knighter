@@ -32,13 +32,13 @@ public class Boss_Run : StateMachineBehaviour
 
        if (Vector2.Distance(player.position, rb.position) <= attackRange)
         {
-            animator.SetTrigger("Attack");
+            //animator.SetTrigger("Attack");
         }
     }
 
     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.ResetTrigger("Attack");
+        //animator.ResetTrigger("Attack");
     }
 }

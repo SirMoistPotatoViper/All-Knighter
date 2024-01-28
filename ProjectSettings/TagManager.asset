@@ -7,8 +7,10 @@ TagManager:
   - Obstacles
   - Ground
   - RealPlayer
-  - SafeZone
-  - EvilMother
+  - Enemy
+  - Spike
+  - Ebullet
+  - Checkpoint
   layers:
   - Default
   - TransparentFX
@@ -19,8 +21,8 @@ TagManager:
   - Obstacles
   - 
   - 
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 

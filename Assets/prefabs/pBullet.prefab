@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8343999573439613074}
   - component: {fileID: 8278762098530150251}
   - component: {fileID: -4948432178005527586}
+  - component: {fileID: 8879008684140767996}
   m_Layer: 0
   m_Name: pBullet
   m_TagString: Untagged
@@ -76,8 +77,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.95842713, g: 1, b: 0.09119487, a: 1}
+  m_Sprite: {fileID: -617078658, guid: 2beefa9243128cd41abfe42e74bb059c, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -166,3 +167,24 @@ MonoBehaviour:
   rb: {fileID: 8343999573439613074}
   impactEffect: {fileID: 6736661576063744240, guid: 55efade5ec03b664dbb50f845cf20f15, type: 3}
   impactEffectDuration: 0.25
+--- !u!95 &8879008684140767996
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3613693567565972812}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08e5bdf0b5b14e046bdf24c3c306b633, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

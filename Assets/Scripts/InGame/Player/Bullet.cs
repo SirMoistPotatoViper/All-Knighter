@@ -38,6 +38,7 @@ public class Bullet : MonoBehaviour
             enemy.TakeDamage(damage);
         }
 
+
         GameObject impact = Instantiate(impactEffect, transform.position, transform.rotation);
         Destroy(impact, impactEffectDuration);
         //lineRenderer.SetPosition(0, spawnPoint.position);

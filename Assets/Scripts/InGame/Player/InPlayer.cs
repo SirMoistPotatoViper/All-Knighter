@@ -14,7 +14,7 @@ public class InPlayer : MonoBehaviour
     public Rigidbody2D rb;
     public Transform groundCheck;
     public LayerMask groundLayer;
-
+    Animator m_Animator;
     private float horizontal;
     private float speed = 8f;
     private float jumpingPower = 16f;
@@ -26,15 +26,20 @@ public class InPlayer : MonoBehaviour
     private InputAction quit;
     private InputAction jump;
     private InputAction shoot;
+    HealthBarScript health;
+
 
     [SerializeField]
     public Transform firePoint;
     public GameObject bulletPrefab;
+
+
     //public HealthBarBehaviour pHealth;
     //public float damage;
     // Start is called before the first frame update
     void Start()
     {
+        m_Animator = gameObject.GetComponent<Animator>();
         Debug.Log("Script starts");
         rb = GetComponent<Rigidbody2D>();
         MPI = GetComponent<PlayerInput>();
@@ -77,10 +82,12 @@ public class InPlayer : MonoBehaviour
         Debug.Log("Pls");
         horizontal = 0f;
         rb.velocity = new Vector2(0, rb.velocity.y);
+        m_Animator.SetBool("run", false);
     }
 
     private void Handle_JumpPerformed(InputAction.CallbackContext context)
     {
+        m_Animator.SetTrigger("boing");
         Debug.Log("Read this");
         if (IsGrounded())
         {
@@ -94,7 +101,8 @@ public class InPlayer : MonoBehaviour
 
     void Update()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         {
             if (!isFacingRight && horizontal > 0f)
             {
@@ -104,6 +112,14 @@ public class InPlayer : MonoBehaviour
             {
                 Flip();
             }
+        }
+        if (IsGrounded()) 
+        {
+            m_Animator.SetBool("grounded", true);
+        }
+        else
+        {
+            m_Animator.SetBool("grounded", false);
         }
     }
 
@@ -146,6 +162,7 @@ public class InPlayer : MonoBehaviour
     {
         Debug.Log("shoot");
         Shoot();
+        m_Animator.SetTrigger("shoot");
     }
 
     void Shoot ()
@@ -178,12 +195,13 @@ public class InPlayer : MonoBehaviour
             // Input is actively performed (button pressed or held)
             horizontal = context.ReadValue<Vector2>().x;
             Debug.Log("Moving!");
-        
+        m_Animator.SetBool("run", true);
+
         //else if (context.canceled)
         //{
-            // Input has been released
-           // rb.velocity = new Vector2(0, rb.velocity.y);
-            //Debug.Log("Not moving anymore.");
+        // Input has been released
+        // rb.velocity = new Vector2(0, rb.velocity.y);
+        //Debug.Log("Not moving anymore.");
         //}
     }
 

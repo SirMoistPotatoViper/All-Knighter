@@ -19,7 +19,7 @@ public class EnemyBullet : MonoBehaviour
         rb.velocity = new Vector2(direction.x, direction.y).normalized * force;
 
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, rot + 90);
+        transform.rotation = Quaternion.Euler(0, 0, rot);
     }
 
     // Update is called once per frame
@@ -40,10 +40,11 @@ public class EnemyBullet : MonoBehaviour
             other.gameObject.GetComponent<HealthBarScript>().health -= 20;
             Destroy(gameObject);
         }
-        else if (other.gameObject.CompareTag("Ground"))
+        else if (!other.gameObject.CompareTag("Enemy")) // Check if the collided object is not tagged "Enemy"
         {
             Destroy(gameObject);
         }
-        
+
+
     }
 }
