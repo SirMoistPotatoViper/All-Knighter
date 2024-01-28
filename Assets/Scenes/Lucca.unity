@@ -930,7 +930,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 577918079}
-  m_LocalRotation: {x: -0.00000016216644, y: -0.00000009362668, z: -0.70710576, w: -0.70710784}
+  m_LocalRotation: {x: -0.00000016216637, y: -0.000000093626696, z: -0.70710576, w: -0.70710784}
   m_LocalPosition: {x: 0, y: 0, z: -2.0143712}
   m_LocalScale: {x: 0.20143712, y: 0.20143712, z: 0.20143712}
   m_ConstrainProportionsScale: 0
@@ -6831,6 +6831,10 @@ MonoBehaviour:
   playerControls: {fileID: 2047358125}
   player: {fileID: 34799704}
   mother: {fileID: 2048283778}
+  childUp: {fileID: 0}
+  childDown: {fileID: 0}
+  childLeft: {fileID: 0}
+  childRight: {fileID: 0}
   energyBar: {fileID: 543737040}
   energy: 0
   moveDirectionV: 0

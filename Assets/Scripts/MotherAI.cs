@@ -141,7 +141,6 @@ public class MotherAI : MonoBehaviour
         Vector2 force = direction * speed * Time.deltaTime;
         transform.right = direction;
 
-
         rb.AddForce(force);
 
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);

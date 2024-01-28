@@ -14,6 +14,11 @@ public class NewBehaviourScript : MonoBehaviour
     public GameObject player;
     public GameObject mother;
 
+    public GameObject childUp;
+    public GameObject childDown;
+    public GameObject childLeft;
+    public GameObject childRight;
+
     public Slider energyBar;
     public int energy;
 
@@ -42,11 +47,17 @@ public class NewBehaviourScript : MonoBehaviour
         moveDirectionH = moveHorizontal.ReadValue<float>();
         if (moveDirectionH < 0)
         {
-            player.transform.Rotate(new Vector3(0, 0, 0));
+            childLeft.SetActive(true);
+            childRight.SetActive(false);
+            childUp.SetActive(false);
+            childDown.SetActive(false);
         }
-        else
+        else if (moveDirectionH > 0)
         {
-            player.transform.Rotate(new Vector3(0, 0, -180));
+            childLeft.SetActive(false);
+            childRight.SetActive(true);
+            childUp.SetActive(false);
+            childDown.SetActive(false);
         }
     }
     private void moveHorizontal_Canceled(InputAction.CallbackContext context)
@@ -59,11 +70,17 @@ public class NewBehaviourScript : MonoBehaviour
         moveDirectionV = moveVertical.ReadValue<float>();
         if (moveDirectionV < 0)
         {
-            player.transform.Rotate(new Vector3(0, 0, -270));
+            childLeft.SetActive(false);
+            childRight.SetActive(false);
+            childUp.SetActive(false);
+            childDown.SetActive(true);
         }
-        else
+        else if (moveDirectionV > 0)
         {
-            player.transform.Rotate(new Vector3(0, 0, -90));
+            childLeft.SetActive(false);
+            childRight.SetActive(false);
+            childUp.SetActive(true);
+            childDown.SetActive(false);
         }
     }
 
